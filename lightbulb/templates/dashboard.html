@@ -1,0 +1,23 @@
+{% extends "basic.html" %}
+{% block content %}
+<div class="alert alert-danger" id="error"></div>
+<ul id="readings"></ul>
+<script>
+    (function poll() {
+        setTimeout(function () {
+            $.ajax({
+                url: "/sensors", success: function (data) {
+                    $('#error').text = '';
+                    $('#readings').empty();
+                    for (var property in data) {
+                        if (data.hasOwnProperty(property)) {
+                            $('#readings').append("<li><strong>" + property + "</strong>: " + data[property] + "</li>")
+                        }
+                    }
+
+                }, dataType: "json", complete: poll
+            });
+        }, 5000);
+    })();
+</script>
+{% endblock %}

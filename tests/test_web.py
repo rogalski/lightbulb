@@ -23,3 +23,8 @@ def test_sensors_endpoint(client):
         r = client.get('/sensors')
     assert {} == json.loads(r.data)
     assert r.status_code == 200
+
+
+def test_dashboard_endpoint(client):
+    r = client.get('/')
+    assert r.status_code == 200
