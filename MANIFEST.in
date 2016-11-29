@@ -1,0 +1,2 @@
+recursive-include lightbulb/templates *
+recursive-include lightbulb/static *
